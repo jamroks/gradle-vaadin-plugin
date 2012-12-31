@@ -74,6 +74,9 @@ class CreateComponentTask extends DefaultTask {
     		TemplateUtil.writeTemplate("MyComponent.java", componentDir, componentName+".java", substitutions)	
     		TemplateUtil.writeTemplate("MyComponentWidget.java", clientui, componentName+"Widget.java", substitutions)
     		TemplateUtil.writeTemplate("MyComponentConnector.java", clientui, componentName+"Connector.java", substitutions)
+            TemplateUtil.writeTemplate("MyComponentState.java", clientui, componentName+"State.java", substitutions)
+            TemplateUtil.writeTemplate("MyComponentServerRpc.java", clientui, componentName+"ServerRpc.java", substitutions)
+            TemplateUtil.writeTemplate("MyComponentClientRpc.java", clientui, componentName+"ClientRpc.java", substitutions)
     	}
 
         if(project.vaadin.widgetset != null){
