@@ -1,9 +1,27 @@
 package %PACKAGE_CLIENT%;
 
+
+import com.google.gwt.core.client.GWT;
+import com.google.gwt.user.client.Window;
+import com.google.gwt.user.client.ui.Widget;
+
 import com.vaadin.client.ui.AbstractComponentConnector;
 import com.vaadin.shared.ui.Connect;
+
+
 import %PACKAGE%.%COMPONENT_NAME%;
 import %PACKAGE_CLIENT%.%COMPONENT_NAME%Widget;
+import %PACKAGE_CLIENT%.%COMPONENT_NAME%ServerRpc;
+import %PACKAGE_CLIENT%.%COMPONENT_NAME%ClientRpc;
+import %PACKAGE_CLIENT%.%COMPONENT_NAME%State;
+
+import com.vaadin.client.communication.RpcProxy;
+import com.google.gwt.event.dom.client.ClickEvent;
+import com.google.gwt.event.dom.client.ClickHandler;
+import com.vaadin.shared.MouseEventDetails;
+import com.vaadin.client.MouseEventDetailsBuilder;
+import com.vaadin.client.communication.StateChangeEvent;
+
 
 /**
  * Connects the server side component with the client side widget
@@ -11,9 +29,56 @@ import %PACKAGE_CLIENT%.%COMPONENT_NAME%Widget;
 @Connect(%COMPONENT_NAME%.class)
 public class %COMPONENT_NAME%Connector extends AbstractComponentConnector {
 
+
+
+    %COMPONENT_NAME%ServerRpc rpc = RpcProxy
+            .create(%COMPONENT_NAME%ServerRpc.class, this);
+
+
+    public %COMPONENT_NAME%Connector() {    
+        registerRpc(%COMPONENT_NAME%ClientRpc.class, new %COMPONENT_NAME%ClientRpc() {
+            public void alert(String message) {
+            	// TODO Do something useful
+                Window.alert(message);
+            }
+        });
+
+
+    // TODO ServerRpc usage example, do something useful instead
+        getWidget().addClickHandler(new ClickHandler() {
+            public void onClick(ClickEvent event) {
+                final MouseEventDetails mouseDetails = MouseEventDetailsBuilder
+                        .buildMouseEventDetails(event.getNativeEvent(),
+                                getWidget().getElement());
+                rpc.clicked(mouseDetails);
+            }
+        });
+
+    }
+
+
     @Override
     public %COMPONENT_NAME%Widget getWidget() {
         return (%COMPONENT_NAME%Widget) super.getWidget();
+    }
+
+     @Override
+    protected Widget createWidget() {
+        return GWT.create(MyCompo1Widget.class);
+    }
+
+    @Override
+    public MyCompo1State getState() {
+        return (MyCompo1State) super.getState();
+    }
+
+    @Override
+    public void onStateChanged(StateChangeEvent stateChangeEvent) {
+        super.onStateChanged(stateChangeEvent);
+		
+		// TODO do something useful
+        final String text = getState().text;
+        getWidget().setText(text);
     }
 }
 

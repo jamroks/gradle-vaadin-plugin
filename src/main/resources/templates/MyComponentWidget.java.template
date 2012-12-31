@@ -8,10 +8,13 @@ import com.google.gwt.user.client.ui.Label;
 public class %COMPONENT_NAME%Widget extends Label {
 
 	// Style name used for theming
+
     public static final String CLASSNAME = "%COMPONENT_STYLENAME%";
 
     public %COMPONENT_NAME%Widget() {
+  
+        // setText("MyCompo1 sets the text via MyCompo1Connector using MyCompo1State");
         setStyleName(CLASSNAME);
-    	setText("It works!");
+    	
     }
 }
