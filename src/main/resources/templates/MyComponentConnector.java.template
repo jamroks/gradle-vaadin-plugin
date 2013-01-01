@@ -64,12 +64,12 @@ public class %COMPONENT_NAME%Connector extends AbstractComponentConnector {
 
      @Override
     protected Widget createWidget() {
-        return GWT.create(MyCompo1Widget.class);
+        return GWT.create(%COMPONENT_NAME%Widget.class);
     }
 
     @Override
-    public MyCompo1State getState() {
-        return (MyCompo1State) super.getState();
+    public %COMPONENT_NAME%State getState() {
+        return (%COMPONENT_NAME%State) super.getState();
     }
 
     @Override

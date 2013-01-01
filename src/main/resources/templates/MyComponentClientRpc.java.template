@@ -6,6 +6,6 @@ import com.vaadin.shared.communication.ClientRpc;
 public interface %COMPONENT_NAME%ClientRpc extends ClientRpc {
 
     // TODO example API
-    public void clicked(MouseEventDetails mouseDetails);
+    public void alert(String message);
 
 }
