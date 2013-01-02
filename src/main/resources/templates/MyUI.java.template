@@ -17,7 +17,7 @@ public class %APPLICATION_NAME%UI extends UI {
         protected void init(VaadinRequest request) {
             final VerticalLayout mylayout = new VerticalLayout();
             mylayout.setMargin(true);
-            setContent(layout);
+            setContent(mylayout);
 
             Button button = new Button("Click Me");
             button.addClickListener(new Button.ClickListener() {

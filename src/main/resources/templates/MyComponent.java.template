@@ -32,7 +32,7 @@ public class %COMPONENT_NAME% extends AbstractComponent {
 
     @Override
     public %COMPONENT_NAME%State getState() {
-        return (%COMPONENT_NAME%tate) super.getState();
+        return (%COMPONENT_NAME%State) super.getState();
     }
 
 }
