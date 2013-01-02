@@ -2,9 +2,37 @@ package %PACKAGE%;
 
 import com.vaadin.ui.AbstractComponent;
 
+import %PACKAGE_CLIENT%.%COMPONENT_NAME%ServerRpc;
+import %PACKAGE_CLIENT%.%COMPONENT_NAME%ClientRpc;
+import %PACKAGE_CLIENT%.%COMPONENT_NAME%State;
+import com.vaadin.shared.MouseEventDetails;
+
 /**
  * Server side implementation of the component
  */
 public class %COMPONENT_NAME% extends AbstractComponent {
+
+ private %COMPONENT_NAME%ServerRpc rpc = new %COMPONENT_NAME%ServerRpc() {
+        private int clickCount = 0;
+
+        public void clicked(MouseEventDetails mouseDetails) {
+            // nag every 5:th click using RPC
+            if (++clickCount % 5 == 0) {
+                getRpcProxy(%COMPONENT_NAME%ClientRpc.class).alert(
+                        "Ok, that's enough!");
+            }
+            // update shared state
+            getState().text = "You have clicked " + clickCount + " times";
+        }
+    };
+
+    public %COMPONENT_NAME%() {
+        registerRpc(rpc);
+    }
+
+    @Override
+    public %COMPONENT_NAME%State getState() {
+        return (%COMPONENT_NAME%tate) super.getState();
+    }
 
 }
