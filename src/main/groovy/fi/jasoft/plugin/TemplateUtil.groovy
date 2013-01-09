@@ -58,8 +58,8 @@ class TemplateUtil {
         File widgetsetFile = new File(javaDir.canonicalPath + '/'+ project.vaadin.widgetset.replaceAll(/\./,'/')+".gwt.xml")
         
         if(widgetsetFile.exists()){
-            updateWidgetset(widgetsetFile, project);
-            return false;
+            //updateWidgetset(widgetsetFile, project);
+            return true;
         } 
 
         // Check resource dir if widgetset is present there
@@ -67,8 +67,8 @@ class TemplateUtil {
         widgetsetFile = new File(resourceDir.canonicalPath + '/'+ project.vaadin.widgetset.replaceAll(/\./,'/')+".gwt.xml")
 
         if(widgetsetFile.exists()){
-            updateWidgetset(widgetsetFile, project);
-            return false;
+            //updateWidgetset(widgetsetFile, project);
+            return true;
         }
 
         // No widgetset detected, create one
